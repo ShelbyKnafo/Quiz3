@@ -1,6 +1,4 @@
-# Boiler Plate
-
-
+te
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -23,6 +21,7 @@ class NewVisitorTest(unittest.TestCase):
     #####################
 
     def test_home_page(self):
+
         """
 
         Quiz 3. Add A Page for me.
@@ -57,7 +56,30 @@ class NewVisitorTest(unittest.TestCase):
 
 	# here is the first test (for free) 
         self.browser.get('http://localhost:8000/index.html')
+    
+        self.assertIn('Quiz 3 Test Web Site',self.browser.title)
+    
+    # now we test for a header that says "Quiz3"
+        a=self.browser.find_element_by_tag_name('h1')
+    # make sure it says Quiz3
+        self.assertIn('Quiz 3',a.text)
+
+        m=self.browser.find_element_by_tag_name('img')
+        self.assertIn('bunchofgrass.jpg',m.get_attribute('src'))
+
+        a=self.browser.find_element_by_id('newpage')
+    #**this is the test for the clickable area
+        a.click()
+
+        h=self.browser.find_element_by_tag_name('h1')
+        self.assertIn("newpage",h.text)
+        m=self.browser.find_element_by_tag_name('img')
+        self.assertIn('newpage.jpg',m.get_attribute('src'))
+
+
+
+
+
 
 if __name__=="__main__":
         unittest.main(warnings="ignore")
-
